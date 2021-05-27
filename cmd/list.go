@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
@@ -41,16 +40,7 @@ func (lc *ListCommand) runList(command *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	err = PrintTable(outConfig)
-	if err != nil {
-		return err
-	}
-	err = ClusterStatus()
-	if err != nil {
-		printWarning(os.Stdout, "Cluster check failure!\n")
-		return err
-	}
-	return nil
+	return PrintTable(outConfig)
 }
 
 func filterArgs(args []string, config *clientcmdapi.Config) (*clientcmdapi.Config, error) {

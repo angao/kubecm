@@ -153,7 +153,7 @@ func SelectUI(kubeItems []Needle, label string) int {
 		Label:     label,
 		Items:     kubeItems,
 		Templates: templates,
-		Size:      uiSize,
+		Size:      len(kubeItems),
 		Searcher:  searcher,
 	}
 	i, _, err := prompt.Run()
