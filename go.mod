@@ -9,7 +9,7 @@ require (
 	github.com/alibabacloud-go/tea-utils v1.4.3 // indirect
 	github.com/bndr/gotabulate v1.1.3-0.20170315142410-bc555436bfd5
 	github.com/daviddengcn/go-colortext v1.0.0
-	github.com/imdario/mergo v0.3.12
+	github.com/imdario/mergo v0.3.13
 	github.com/manifoldco/promptui v0.3.2
 	github.com/pterm/pterm v0.12.41
 	github.com/rancher/norman v0.0.0-20200820172041-261460ee9088
@@ -87,7 +87,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.0 // indirect
 	k8s.io/klog/v2 v2.30.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20211115234752-e816edb12b65 // indirect
 	sigs.k8s.io/json v0.0.0-20211020170558-c049b76a60c6 // indirect
