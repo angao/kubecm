@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"net/url"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -30,6 +32,7 @@ type Client struct {
 	unsignedPayload bool
 	debug           bool
 	rb              *circuitBreaker
+	logger          *log.Logger
 }
 
 func (c *Client) Send(request tchttp.Request, response tchttp.Response) (err error) {
@@ -113,6 +116,9 @@ func (c *Client) sendWithoutSignature(request tchttp.Request, response tchttp.Re
 	if request.GetHttpMethod() == "POST" {
 		httpRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	}
+	for k, v := range request.GetHeader() {
+		httpRequest.Header.Set(k, v)
+	}
 	httpResponse, err := c.sendWithRateLimitRetry(httpRequest, isRetryable(request))
 	if err != nil {
 		return err
@@ -139,6 +145,11 @@ func (c *Client) sendWithSignatureV1(request tchttp.Request, response tchttp.Res
 	if request.GetHttpMethod() == "POST" {
 		httpRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	}
+
+	for k, v := range request.GetHeader() {
+		httpRequest.Header.Set(k, v)
+	}
+
 	httpResponse, err := c.sendWithRateLimitRetry(httpRequest, isRetryable(request))
 	if err != nil {
 		return err
@@ -180,6 +191,16 @@ func (c *Client) sendWithSignatureV3(request tchttp.Request, response tchttp.Res
 				headers[k] = v
 			}
 			octetStreamBody = cr.GetOctetStreamBody()
+		}
+	}
+
+	for k, v := range request.GetHeader() {
+		switch k {
+		case "X-TC-Action", "X-TC-Version", "X-TC-Timestamp", "X-TC-RequestClient",
+			"X-TC-Language", "Content-Type", "X-TC-Region", "X-TC-Token":
+			c.logger.Printf("Skip header \"%s\": can not specify built-in header", k)
+		default:
+			headers[k] = v
 		}
 	}
 
@@ -307,10 +328,10 @@ func (c *Client) sendHttp(request *http.Request) (response *http.Response, err e
 	if c.debug {
 		outBytes, err := httputil.DumpRequest(request, true)
 		if err != nil {
-			log.Printf("[ERROR] dump request failed because %s", err)
+			c.logger.Printf("[ERROR] dump request failed because %s", err)
 			return nil, err
 		}
-		log.Printf("[DEBUG] http request = %s", outBytes)
+		c.logger.Printf("[DEBUG] http request = %s", outBytes)
 	}
 
 	response, err = c.httpClient.Do(request)
@@ -322,11 +343,11 @@ func (c *Client) GetRegion() string {
 }
 
 func (c *Client) Init(region string) *Client {
-	c.httpClient = &http.Client{}
+	c.httpClient = &http.Client{Transport: http.DefaultTransport.(*http.Transport).Clone()}
 	c.region = region
 	c.signMethod = "TC3-HMAC-SHA256"
 	c.debug = false
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	c.logger = log.New(os.Stderr, "", log.LstdFlags|log.Lshortfile)
 	return c
 }
 
@@ -354,6 +375,13 @@ func (c *Client) WithProfile(clientProfile *profile.ClientProfile) *Client {
 	c.httpProfile = clientProfile.HttpProfile
 	c.debug = clientProfile.Debug
 	c.httpClient.Timeout = time.Duration(c.httpProfile.ReqTimeout) * time.Second
+	if c.httpProfile.Proxy != "" {
+		u, err := url.Parse(c.httpProfile.Proxy)
+		if err != nil {
+			panic(err)
+		}
+		c.httpClient.Transport.(*http.Transport).Proxy = http.ProxyURL(u)
+	}
 	return c
 }
 
