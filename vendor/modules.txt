@@ -26,7 +26,7 @@ github.com/alibabacloud-go/alibabacloud-gateway-spi/client
 # github.com/alibabacloud-go/cs-20151215/v2 v2.4.5
 ## explicit; go 1.15
 github.com/alibabacloud-go/cs-20151215/v2/client
-# github.com/alibabacloud-go/darabonba-openapi v0.1.16
+# github.com/alibabacloud-go/darabonba-openapi v0.1.18
 ## explicit; go 1.14
 github.com/alibabacloud-go/darabonba-openapi/client
 # github.com/alibabacloud-go/debug v0.0.0-20190504072949-9472017b5c68
@@ -35,7 +35,7 @@ github.com/alibabacloud-go/debug/debug
 # github.com/alibabacloud-go/endpoint-util v1.1.0
 ## explicit
 github.com/alibabacloud-go/endpoint-util/service
-# github.com/alibabacloud-go/openapi-util v0.0.10
+# github.com/alibabacloud-go/openapi-util v0.0.11
 ## explicit; go 1.14
 github.com/alibabacloud-go/openapi-util/service
 # github.com/alibabacloud-go/tea v1.1.17
@@ -45,6 +45,9 @@ github.com/alibabacloud-go/tea/utils
 # github.com/alibabacloud-go/tea-utils v1.4.3
 ## explicit; go 1.14
 github.com/alibabacloud-go/tea-utils/service
+# github.com/alibabacloud-go/tea-xml v1.1.2
+## explicit; go 1.14
+github.com/alibabacloud-go/tea-xml/service
 # github.com/aliyun/credentials-go v1.1.2
 ## explicit; go 1.14
 github.com/aliyun/credentials-go/credentials
@@ -60,6 +63,9 @@ github.com/bndr/gotabulate
 # github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e
 ## explicit
 github.com/chzyer/readline
+# github.com/clbanning/mxj/v2 v2.5.5
+## explicit; go 1.15
+github.com/clbanning/mxj/v2
 # github.com/client9/misspell v0.3.4
 ## explicit
 github.com/client9/misspell
@@ -76,6 +82,9 @@ github.com/daviddengcn/go-colortext
 # github.com/form3tech-oss/jwt-go v3.2.3+incompatible
 ## explicit
 github.com/form3tech-oss/jwt-go
+# github.com/ghodss/yaml v1.0.0
+## explicit
+github.com/ghodss/yaml
 # github.com/go-logr/logr v1.2.0
 ## explicit; go 1.16
 github.com/go-logr/logr
@@ -112,6 +121,9 @@ github.com/gookit/color
 # github.com/gordonklaus/ineffassign v0.0.0-20180909121442-1003c8bd00dc
 ## explicit
 github.com/gordonklaus/ineffassign
+# github.com/gorilla/websocket v1.4.2
+## explicit; go 1.12
+github.com/gorilla/websocket
 # github.com/imdario/mergo v0.3.12
 ## explicit; go 1.13
 github.com/imdario/mergo
@@ -125,6 +137,9 @@ github.com/json-iterator/go
 ## explicit
 github.com/juju/ansiterm
 github.com/juju/ansiterm/tabwriter
+# github.com/konsorten/go-windows-terminal-sequences v1.0.3
+## explicit
+github.com/konsorten/go-windows-terminal-sequences
 # github.com/lunixbochs/vtclean v0.0.0-20180621232353-2d01aacdc34a
 ## explicit
 github.com/lunixbochs/vtclean
@@ -148,16 +163,37 @@ github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.2
 ## explicit; go 1.12
 github.com/modern-go/reflect2
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
 # github.com/pterm/pterm v0.12.41
 ## explicit; go 1.15
 github.com/pterm/pterm
 github.com/pterm/pterm/internal
+# github.com/rancher/norman v0.0.0-20200820172041-261460ee9088
+## explicit; go 1.12
+github.com/rancher/norman/clientbase
+github.com/rancher/norman/httperror
+github.com/rancher/norman/types
+github.com/rancher/norman/types/convert
+github.com/rancher/norman/types/definition
+github.com/rancher/norman/types/slice
+github.com/rancher/norman/types/values
+# github.com/rancher/rancher/pkg/client v0.0.0-20211110212758-cc2b8beb1473
+## explicit; go 1.14
+github.com/rancher/rancher/pkg/client/generated/management/v3
+# github.com/rancher/wrangler v0.6.2-0.20200820173016-2068de651106
+## explicit; go 1.13
+github.com/rancher/wrangler/pkg/name
 # github.com/rivo/uniseg v0.2.0
 ## explicit; go 1.12
 github.com/rivo/uniseg
 # github.com/russross/blackfriday/v2 v2.1.0
 ## explicit
 github.com/russross/blackfriday/v2
+# github.com/sirupsen/logrus v1.6.0
+## explicit; go 1.13
+github.com/sirupsen/logrus
 # github.com/spf13/cobra v1.4.0
 ## explicit; go 1.15
 github.com/spf13/cobra
@@ -165,14 +201,14 @@ github.com/spf13/cobra/doc
 # github.com/spf13/pflag v1.0.5
 ## explicit; go 1.12
 github.com/spf13/pflag
-# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.370
+# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.571
 ## explicit; go 1.14
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/http
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/regions
-# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tke v1.0.370
+# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tke v1.0.403
 ## explicit; go 1.14
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tke/v20180525
 # github.com/tjfoc/gmsm v1.3.2
@@ -368,6 +404,7 @@ k8s.io/apimachinery/pkg/util/json
 k8s.io/apimachinery/pkg/util/managedfields
 k8s.io/apimachinery/pkg/util/naming
 k8s.io/apimachinery/pkg/util/net
+k8s.io/apimachinery/pkg/util/rand
 k8s.io/apimachinery/pkg/util/runtime
 k8s.io/apimachinery/pkg/util/sets
 k8s.io/apimachinery/pkg/util/validation
